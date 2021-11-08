@@ -14,29 +14,31 @@ int main(){
 		min=num1;
 		max=num2;
 	}
-	printf(" Prime numbers:");
-	for(int i=min;i<max;i++){
-		if(isPrime(i)){
-			printf(", %d ", i);
-		}
-	}
-	printf("\n Armstrong numbers:");
+	printf("The Armstrong numbers are:");
 	for(int i=min;i<max;i++){
 		if(isArmstrong(i)){
-			printf(", %d ", i);
+			printf(" %d", i);
 		}
 	}
-	printf("\n Strong numbers:");
-	for(int i=min;i<max;i++){
-		if(isStrong(i)){
-			printf(", %d ", i);
-		}
-	}
-	printf("\n Palindrome numbers:");
+	printf("\nThe Palindromes are:");
 	for(int i=min;i<max;i++){
 		if(isPalindrome(i)){
-			printf(", %d ", i);
+			printf(" %d", i);
 		}
 	}
+	printf("\nThe Prime numbers are:");
+	for(int i=min;i<max;i++){
+		if(isPrime(i)){
+			printf(" %d", i);
+		}
+	}
+	
+	printf("\nThe Strong numbers are:");
+	for(int i=min;i<max;i++){
+		if(isStrong(i)){
+			printf(" %d", i);
+		}
+	}
+	
 	printf("\n");
 }
