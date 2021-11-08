@@ -32,23 +32,31 @@ clean:
 	rm -f maindrec
 	rm -f maindloop
 loops: 
-	make basicClassification.o
-	make advancedClassificationLoop.o
-	ar rc libclassloops.a basicClassification.o advancedClassificationLoop.o NumClass.h
-	ranlib libclassloops.a
+	#ifndef _loops_a
+		make basicClassification.o
+		make advancedClassificationLoop.o
+		ar rc libclassloops.a basicClassification.o advancedClassificationLoop.o NumClass.h
+		ranlib libclassloops.a
+	#endif
 recursives:
+	#ifndef _recursives_a
 	make basicClassification.o 
 	make advancedClassificationRecursion.o
 	ar rc libclassrec.a basicClassification.o advancedClassificationRecursion.o
 	ranlib libclassrec.a
+	#endif
 recursived:
+	#ifndef _recursived_so
 	make basicClassification.o
 	make advancedClassificationRecursion.o
 	gcc -shared basicClassification.o advancedClassificationRecursion.o -o libclassrec.so
+	#endif
 loopd:
+	#ifndef _loopd_so
 	make basicClassification.o
 	make advancedClassificationLoop.o
 	gcc -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
+	#endif
 mains:
 	make maindrec.o
 	make basicClassification.o
