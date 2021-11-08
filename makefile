@@ -22,21 +22,72 @@ clean:
 	rm -f maindrec
 	rm -f maindloop
 loops: 
+	#ifndef _basicClassification_o
+		make basicClassification.o
+	#endif
+	#ifndef _advancedClassificationLoop_o
+		make advancedClassificationLoop.o
+	#endif
 	ar rc libclassloops.a basicClassification.o advancedClassificationLoop.o NumClass.h
 	ranlib libclassloops.a
 recursives:
+	#ifndef _basicClassification_o
+		make basicClassification.o
+	#endif
+	#ifndef _advancedClassificationRecursion_o
+		make advancedClassificationRecursion.o
+	#endif
 	ar rc libclassrec.a basicClassification.o advancedClassificationRecursion.o
 	ranlib libclassrec.a
 recursived:
+	#ifndef _basicClassification_o
+		make basicClassification.o
+	#endif
+	#ifndef _advancedClassificationRecursion_o
+		make advancedClassificationRecursion.o
+	#endif
 	gcc -shared basicClassification.o advancedClassificationRecursion.o -o libclassrec.so
 loopd:
+	#ifndef _basicClassification_o
+		make basicClassification.o
+	#endif
+	#ifndef _advancedClassificationLoop_o
+		make advancedClassificationLoop.o
+	#endif
 	gcc -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
 mains:
+	#ifndef _basicClassification_o
+		make basicClassification.o
+	#endif
+	#ifndef _advancedClassificationRecursion_o
+		make advancedClassificationRecursion.o
+	#endif
+	#ifndef _maindrec_o
+		make maindrec.o
+	#endif
 	gcc maindrec.o basicClassification.o advancedClassificationRecursion.o NumClass.h -L libclassrec.a -o mains
 maindrec:
+	#ifndef _basicClassification_o
+		make basicClassification.o
+	#endif
+	#ifndef _advancedClassificationRecursion_o
+		make advancedClassificationRecursion.o
+	#endif
+	#ifndef _maindrec_o
+		make maindrec.o
+	#endif
 	gcc -shared basicClassification.o advancedClassificationRecursion.o -o libclassrec.so
 	gcc maindrec.o basicClassification.o advancedClassificationRecursion.o NumClass.h -L libclassrec.so -o maindrec
 maindloop:
+	#ifndef _basicClassification_o
+		make basicClassification.o
+	#endif
+	#ifndef _advancedClassificationLoop_o
+		make advancedClassificationLoop.o
+	#endif
+	#ifndef _main_o
+		make main.o
+	#endif
 	gcc -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
 	gcc main.o basicClassification.o advancedClassificationLoop.o NumClass.h -L libclassloops.so -o maindloop
 all:
