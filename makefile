@@ -24,39 +24,48 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c
 	#ifndef _advancedClassificationRecursion_o
 	gcc -Wall -c advancedClassificationRecursion.c
 	#endif
+libclassloops.a:
+	#ifndef _libclassloops_a
+	ar rc libclassloops.a basicClassification.o advancedClassificationLoop.o NumClass.h
+	#endif
+libclassrec.a:
+	#ifndef _libclassrec_a
+	ar rc libclassrec.a basicClassification.o advancedClassificationRecursion.o
+	#endif
+libclassrec.so:
+	#ifndef _libclassrec_so
+	gcc -shared basicClassification.o advancedClassificationRecursion.o -o libclassrec.so
+	#endif
+libclassloops.so:
+	#ifndef _libclassloops_so
+	gcc -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
+	#endif
 clean: 
 	rm *.o 
 	rm -f *.a
 	rm -f mains
 	rm -f *.so
+	rm -f *.h.gch
 	rm -f maindrec
 	rm -f maindloop
 loops: 
-	#ifndef _loops_a
-		make basicClassification.o
-		make advancedClassificationLoop.o
-		ar rc libclassloops.a basicClassification.o advancedClassificationLoop.o NumClass.h
-		ranlib libclassloops.a
-	#endif
-recursives:
-	#ifndef _recursives_a
-	make basicClassification.o 
-	make advancedClassificationRecursion.o
-	ar rc libclassrec.a basicClassification.o advancedClassificationRecursion.o
-	ranlib libclassrec.a
-	#endif
-recursived:
-	#ifndef _recursived_so
-	make basicClassification.o
-	make advancedClassificationRecursion.o
-	gcc -shared basicClassification.o advancedClassificationRecursion.o -o libclassrec.so
-	#endif
-loopd:
-	#ifndef _loopd_so
 	make basicClassification.o
 	make advancedClassificationLoop.o
-	gcc -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
-	#endif
+	make libclassloops.a
+	ranlib libclassloops.a
+recursives:
+	make basicClassification.o 
+	make advancedClassificationRecursion.o
+	make libclassrec.a
+	ranlib libclassrec.a
+recursived:
+	make basicClassification.o
+	make advancedClassificationRecursion.o
+	make libclassrec.so
+loopd:
+	make basicClassification.o
+	make advancedClassificationLoop.o
+	make libclassloops.so
 mains:
 	make maindrec.o
 	make basicClassification.o
@@ -77,9 +86,9 @@ maindloop:
 all:
 	make
 	make loops
+	make loopd
 	make recursives
 	make recursived
-	make loopd
 	make mains
 	make maindrec
 	make maindloop
