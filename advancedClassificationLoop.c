@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Functions.h"
+#include "NumClass.h"
 int pow1(int base, int power){
 int ans=1;
 for(int i=0;i<power;i++){

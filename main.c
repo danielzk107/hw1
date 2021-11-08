@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Functions.h"
+#include "NumClass.h"
 int main(){
 	int num1;
 	int num2;

@@ -1,5 +1,5 @@
-#ifndef _Functions_h
-#define _Functions_h
+#ifndef _NumClass_h
+#define _NumClass_h
 
 int pow1(int base, int power);
 int pow2(int base, int power);
